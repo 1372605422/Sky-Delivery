@@ -90,4 +90,34 @@ public class EmployeeController {
         PageResult PageResult = employeeService.pageQuery(employeePageQueryDTO);
         return Result.success(PageResult);
     }
+
+    /**
+     * 启用禁用员工账号
+     */
+    @PostMapping("/status/{status}")
+    public Result lockAndUnlock(@PathVariable Integer status, Long id){
+        log.info("启用禁用员工账号:{},{}",status,id);
+        employeeService.lockAndUnlock(status,id);
+        return Result.success();
+    }
+
+    /**
+     * 根据id查询员工
+     */
+    @GetMapping("/{id}")
+    public Result<Employee> getById(@PathVariable Long id){
+        Employee employee = employeeService.getById(id);
+        return Result.success(employee);
+    }
+
+    /** 编辑员工信息
+     * @param employeeDTO
+     * @return
+     */
+    @PutMapping
+    public Result update(@RequestBody EmployeeDTO employeeDTO){
+        log.info("编辑员工数据，{}",employeeDTO);
+        employeeService.update(employeeDTO);
+        return Result.success();
+    }
 }
