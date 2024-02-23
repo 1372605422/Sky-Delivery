@@ -8,7 +8,7 @@ sky:
     password: 12345678
   alioss:
     endpoint: oss-cn-hangzhou.aliyuncs.com
-    access-key-id: LTAI5tAf97DYd4VGstDDdpdK
-    access-key-secret: N5jMDCZuzhvrJU6txTPgfmWsuarsNT
-    bucket-name: web-tlias-allan
+    access-key-id: 
+    access-key-secret: 
+    bucket-name: 
 
