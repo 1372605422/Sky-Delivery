@@ -17,3 +17,6 @@ sky:
     password: 123456
     #    database 配置Redis中链接的数据库，默认链接DB0
     database: 0
+  wechat:
+    appid: ${WeChat.id}
+    secret: ${WeChat.secret}

@@ -15,6 +15,7 @@ import com.sky.mapper.SetmealDishMapper;
 import com.sky.result.PageResult;
 import com.sky.service.DishService;
 import com.sky.vo.DishVO;
+import com.sky.vo.SetmealVO;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.beans.BeanUtils;
@@ -39,7 +40,7 @@ public class DishServiceImpl implements DishService {
      * @param dishDTO
      */
     @Override
-    @Transactional // 添加事务注解，保证事务的
+    @Transactional // 添加事务注解，保证事务的完整性
     public void saveWithFlavor(DishDTO dishDTO) {
         Dish dish = new Dish();
 
@@ -136,5 +137,15 @@ public class DishServiceImpl implements DishService {
             //向口味表插入数据
             dishFlavorMapper.insertBatch(flavors);
         }
+    }
+
+    @Override
+    public List<Dish> getByList(Long categoryId) {
+        Dish dish = Dish.builder()
+                .categoryId(categoryId)
+                .status(StatusConstant.ENABLE)
+                .build();
+        List<Dish> list = setmealDishMapper.getByList(dish);
+        return list;
     }
 }
