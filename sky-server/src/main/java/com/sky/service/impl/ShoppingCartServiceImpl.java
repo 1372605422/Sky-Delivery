@@ -68,4 +68,25 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         }
         shoppingCartMapper.insert(shoppingCart);
     }
+
+    /**
+     * 查看购物车
+     * @return
+     */
+    @Override
+    public List<ShoppingCart> showShoppingCart() {
+        //获取当前用户的id
+        Long currentId = BaseContext.getCurrentId();
+        ShoppingCart shoppingCart = ShoppingCart.builder()
+                .userId(currentId)
+                .build();
+        List<ShoppingCart> list = shoppingCartMapper.list(shoppingCart);
+        return list;
+    }
+
+    @Override
+    public void clearShoppingCart() {
+        Long userId = BaseContext.getCurrentId();
+        shoppingCartMapper.clearShoppingCart(userId);
+    }
 }

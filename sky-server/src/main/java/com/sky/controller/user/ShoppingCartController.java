@@ -1,14 +1,14 @@
 package com.sky.controller.user;
 
 import com.sky.dto.ShoppingCartDTO;
+import com.sky.entity.ShoppingCart;
 import com.sky.result.Result;
 import com.sky.service.ShoppingCartService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/user/shoppingCart")
@@ -23,4 +23,15 @@ public class ShoppingCartController {
         return Result.success();
     }
 
+    @GetMapping("/list")
+    public Result<List<ShoppingCart>> list(){
+        List<ShoppingCart> shoppingCarts = shoppingCartService.showShoppingCart();
+        return Result.success(shoppingCarts);
+    }
+
+    @DeleteMapping("/clean")
+    public Result clear(){
+        shoppingCartService.clearShoppingCart();
+        return Result.success();
+    }
 }
